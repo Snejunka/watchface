@@ -1,0 +1,30 @@
+ name: Build watch face APK
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Unzip project
+        run: unzip -o ClassicDateWatchFace.zip
+
+      - name: Build APK
+        working-directory: ClassicDateWatchFace
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: watchface-apk
+          path: ClassicDateWatchFace/app/build/outputs/apk/debug/*.apk
