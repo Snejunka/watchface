@@ -1,4 +1,4 @@
- name: Build watch face APK
+name: Build watch face APK
 
 on:
   push:
