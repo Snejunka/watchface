@@ -16,7 +16,7 @@ jobs:
           java-version: '17'
 
       - name: Unzip project
-        run: unzip -o ClassicDateWatchFace.zip
+        run: unzip -o "ClassicDateWatchFace (1).zip"
 
       - name: Build APK
         working-directory: ClassicDateWatchFace
